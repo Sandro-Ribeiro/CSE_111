@@ -78,4 +78,7 @@ print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
 print('+    Thank you for your preference, come back always!  +')
 print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
 print('\n')
+input('Press enter to finish...')
+clear()
+
   

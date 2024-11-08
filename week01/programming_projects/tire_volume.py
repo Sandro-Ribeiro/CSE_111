@@ -40,7 +40,7 @@ print("Are you interested in purchasing this product?")
 answer = input("Answer 'y' for yes or 'n' for not: ")
 
 if answer == "y":
-    phone = input("\nPlease, enter with number phone: ")
+    phone = input("\nPlease, enter your phone number: ")
     dt = datetime.now().date();
     with open("volume.txt", mode="at") as volumefile:
         print(dt, w, a, d, v, phone, sep=",", file=volumefile, flush=False)

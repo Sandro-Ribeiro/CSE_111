@@ -37,7 +37,7 @@ print(f"\nThe approximate volume is {v} liters\n")
 print(f"The price is {price}\n");
 
 print("Are you interested in purchasing this product?")
-answer = input("Answer 'y' for yes or 'n' for not: ")
+answer = input("Answer 'y' for yes or 'n' for no: ")
 
 if answer == "y":
     phone = input("\nPlease, enter your phone number: ")

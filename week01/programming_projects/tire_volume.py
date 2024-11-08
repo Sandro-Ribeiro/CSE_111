@@ -50,6 +50,3 @@ else:
 
 input("Press Enter to finish...")
 clean()
-
-
-

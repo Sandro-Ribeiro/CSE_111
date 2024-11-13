@@ -10,7 +10,7 @@ def main():
   # the volume of an example cone.
   ex_radius = 2.8
   ex_height = 3.2
-  ex_vol = cone_volume()
+  ex_vol = cone_volume(ex_radius, ex_height)
 
   # Print several lines that describe this program.
   print("This program computes the volume of a right")
@@ -25,7 +25,7 @@ def main():
 
   # Call the cone_volume function to compute the volume
   # for the radius and height that came from the user.
-  vol = cone_volume()
+  vol = cone_volume(radius, height)
 
   # Print the radius, height, and
   # volume for the user to see.

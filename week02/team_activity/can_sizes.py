@@ -21,7 +21,7 @@ def compute_cost_efficiency(radius, height, cost):
 def found_highest_cost_efficiency(name, cost_efficiency, highest_efficiency = 0):
     if cost_efficiency > highest_efficiency:
         highest_efficiency = cost_efficiency
-    return highest_name
+    return highest_efficiency
 
 def main():
     with open("data.txt", mode="+r") as data:

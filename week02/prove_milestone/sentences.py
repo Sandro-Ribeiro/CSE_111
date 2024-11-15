@@ -1,7 +1,6 @@
 import random
 
 def get_determiner(quantity):
-
     """Return a randomly chosen determiner. A determiner is
     a word like "the", "a", "one", "some", "many".
     If quantity is 1, this function will return either "a",
@@ -25,7 +24,6 @@ def get_determiner(quantity):
     return determiner
 
 def get_noun(quantity):
-
     """Return a randomly chosen noun.
     If quantity is 1, this function will
     return one of these ten single nouns:
@@ -52,7 +50,6 @@ def get_noun(quantity):
     return noun
 
 def get_verb(quantity, tense):
-
     """Return a randomly chosen verb. If tense is "past",
     this function will return one of these ten verbs:
         "drank", "ate", "grew", "laughed", "thought",

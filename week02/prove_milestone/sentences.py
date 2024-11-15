@@ -107,7 +107,6 @@ def make_sentence(quantity, tense):
 
     print(f"{determiner} {noun} {verb}")
 
-
 def main():
 
     dados = [

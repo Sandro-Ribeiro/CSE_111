@@ -5,9 +5,9 @@ import pytest
 
 
 def test_prefix():
-    """Verify that the prefix function works correctly.
-    Parameters: none
-    Return: nothing
+    """ Verify that the prefix function works correctly.
+        Parameters: none
+        Return: nothing
     """
     # Call the prefix function and verify that it returns a string.
     pre = prefix("upbeat", "upgrade")
@@ -27,6 +27,28 @@ def test_prefix():
     assert prefix("upbeat", "upgrade") == "up"
     assert prefix("Disable", "dIstasteful") == "dis"
 
+def test_suffix():
+    """ Verify that the sufix function works correctly.
+        Parameters: none
+        Return: nothing 
+    """
+
+     # Call the sufix function and verify that it returns a string.
+    sufx = suffix("upbeat", "upgrade")
+    assert isinstance(sufx, str), "suffix function must return a string"
+
+    # Call the suffix function ten times and use an assert
+    # statement to verify that the string returned by the
+    # suffix function is correct each time.
+    assert suffix ("", "") == ""
+    assert suffix ("", "correct") == ""
+    assert suffix ("clear", "") == ""
+    assert suffix ("angelic", "awesome") == ""
+    assert suffix ("found", "profound") == "found"
+    assert suffix ("ditch", "itch") == "itch"
+    assert suffix ("happy", "funny") == "y"
+    assert suffix ("tired", "fatigued") == "ed"
+    assert suffix ("swimming", "FLYING") == "ing"
 
 # Call the main function that is part of pytest so that the
 # computer will execute the test functions in this file.

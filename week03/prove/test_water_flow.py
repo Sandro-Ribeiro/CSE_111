@@ -9,6 +9,7 @@ from water_flow import pressure_loss_from_pipe
 from water_flow import pressure_loss_from_fittings
 from water_flow import reynolds_number
 from water_flow import pressure_loss_from_pipe_reduction
+from water_flow import kPa_to_psi
 
 
 from pytest import approx
@@ -182,6 +183,31 @@ def test_pressure_loss_from_pipe_reduction():
                ) == approx(
                 row["Expected Pressure Loss"],
                 abs = row["approx Absolute Tolerance"])
+
+def teste_kPa_to_psi():
+    """
+    Verify that the kPa_to_psi function works correctly.
+    Parameters: none
+    Return: nothing
+    """
+
+    data = [
+        [120,17.404524],
+        [150,21.755655],
+        [167,24.2212959],
+        [183,26.5418991],
+        [197,28.5724269]
+    ]
+
+    columns = ["Pressure in kPa", "Pressure in psi"]
+    df = pd.DataFrame(data, columns=columns)
+
+    for _, row in df.iterrows():
+        assert kPa_to_psi(
+            row["Pressure in kPa"]
+            ) == approx(
+                row["Pressure in psi"])
+
 
 # Call the main function that is part of pytest so that the
 # computer will execute the test functions in this file.

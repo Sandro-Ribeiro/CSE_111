@@ -106,6 +106,16 @@ def pressure_loss_from_pipe_reduction(larger_diameter,
 
     return P
 
+def kPa_to_psi(pressure):
+    """
+     kPqa_to_psi function converts pressure values in units of kPa to psi units
+    """
+
+    P = pressure * 0.1450377
+
+    return P
+
+
 PVC_SCHED80_INNER_DIAMETER = 0.28687         # (meters)  11.294 inches
 PVC_SCHED80_FRICTION_FACTOR = 0.013          # (unitless)
 SUPPLY_VELOCITY = 1.65                       # (meters / second)
@@ -141,6 +151,8 @@ def main():
     loss = pressure_loss_from_pipe(diameter, length2, friction, velocity)
     pressure += loss
     print(f"Pressure at house: {pressure:.1f} kilopascals")
+    press_psi = kPa_to_psi(pressure)
+    print(f"Pressure at house: {press_psi:.1f} pounds per square inch")
 
 if __name__ == "__main__":
     main()

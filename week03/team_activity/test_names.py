@@ -11,7 +11,7 @@ def test_make_full_name():
     """ 
     Verify that the make_full_name function works correctly.
     Parameters: none
-    Return: string
+    Return: nothing
     """
 
     full_name = make_full_name("Sandro", "Ribeiro")

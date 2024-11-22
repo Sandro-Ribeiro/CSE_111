@@ -11,7 +11,7 @@ def test_extract_city():
     """ 
     Verify that the extract_city function works correctly.
     Parameters: none
-    Return: string
+    Return: nothing
     """
 
     city = extract_city("531 do Carmo, Uberaba, MG 38025000")

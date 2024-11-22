@@ -184,7 +184,7 @@ def test_pressure_loss_from_pipe_reduction():
                 row["Expected Pressure Loss"],
                 abs = row["approx Absolute Tolerance"])
 
-def teste_kPa_to_psi():
+def test_kPa_to_psi():
     """
     Verify that the kPa_to_psi function works correctly.
     Parameters: none

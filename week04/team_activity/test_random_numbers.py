@@ -1,7 +1,7 @@
 # Copyright 2020, Brigham Young University-Idaho. All rights reserved.
 
 from random_numbers import append_random_numbers
-# from random_numbers import append_random_words
+from random_numbers import append_random_words
 import pytest
 
 
@@ -39,25 +39,25 @@ def test_append_random_numbers():
         assert isinstance(x, float)
 
 
-#def test_append_random_words():
-#    """Verify that the append_random_words function works correctly.
-#    Parameters: none
-#    Return: nothing
-#    """
-#    words_list = []
-#    assert len(words_list) == 0
-#
-#    append_random_words(words_list)
-#    assert len(words_list) == 1
-#    for word in words_list:
-#        assert isinstance(word, str)
-#        assert len(word) >= 1
-#
-#    append_random_words(words_list, 3)
-#    assert len(words_list) == 4
-#    for word in words_list:
-#        assert isinstance(word, str)
-#        assert len(word) >= 1
+def test_append_random_words():
+   """Verify that the append_random_words function works correctly.
+   Parameters: none
+   Return: nothing
+   """
+   words_list = []
+   assert len(words_list) == 0
+
+   append_random_words(words_list)
+   assert len(words_list) == 1
+   for word in words_list:
+       assert isinstance(word, str)
+       assert len(word) >= 1
+
+   append_random_words(words_list, 3)
+   assert len(words_list) == 4
+   for word in words_list:
+       assert isinstance(word, str)
+       assert len(word) >= 1
 
 
 # Call the main function that is part of pytest so that the

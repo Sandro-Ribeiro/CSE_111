@@ -1,7 +1,8 @@
 # Copyright 2020, Brigham Young University-Idaho. All rights reserved.
 
 def extract_city(full_address):
-    """Extract and return the name of a city from
+    """
+    Extract and return the name of a city from
     a properly formatted U.S. mailing address.
     Parameter
         full_address: a U.S. mailing address in this format:

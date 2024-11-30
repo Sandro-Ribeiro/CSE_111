@@ -1,6 +1,7 @@
 # Copyright 2020, Brigham Young University-Idaho. All rights reserved.
 
-from chemistry import make_periodic_table, compute_molar_mass
+from chemistry import make_periodic_table, compute_molar_mass, sum_protons, \
+    number_moles, number_protons, get_formula_name
 from formula import parse_formula, FormulaError
 from pytest import approx
 import pytest
@@ -230,6 +231,60 @@ def test_compute_molar_mass():
             == approx(78.11184)
     assert compute_molar_mass([["C",13],["H",16],["N",2],["O",2]],
             periodic_table_dict) == approx(232.27834)
+    
+def test_sum_protons():
+    """Verify that the sum_protons function works correctly.
+
+    Parameters: none
+    Return: nothing
+    """
+    # Call the make_periodic_table function
+    # and verify that it returns a dictionary.
+    periodic_table_dict = make_periodic_table()
+    assert isinstance(periodic_table_dict, dict), \
+        "make_periodic_table function must return a dictionary: " \
+        f" expected a dictionary but found a {type(periodic_table_dict)}"
+
+    # Call the compute_molar_mass function
+    # and verify that it returns a number.
+    total_protons = sum_protons([["O",2]], periodic_table_dict)
+    assert isinstance(sum_protons, int) or isinstance(sum_protons, float), \
+        "compute_molar_mass function must return a number: " \
+        f" expected a number but found a {type(total_protons)}"
+
+    # Call the compute_molar_mass function four times and
+    # verify that it returns the correct number each time.
+    assert sum_protons([], periodic_table_dict) == 0
+    assert sum_protons([["O",2]], periodic_table_dict) \
+            == approx(16)
+    assert sum_protons([["C",6],["H",6]], periodic_table_dict) \
+            == approx(42)
+    assert sum_protons([["C",13],["H",16],["N",2],["O",2]],
+            periodic_table_dict) == approx(124)
+
+    
+def test_number_moles():
+    """Verify that the number_moles function works correctly.
+
+    Parameters: none
+    Return: nothing
+    """
+    total_moles = number_moles( )
+    
+def test_number_protons():
+    """Verify that the number_protons function works correctly.
+
+    Parameters: none
+    Return: nothing
+    """   
+    
+def test_get_formula_name():
+    """Verify that the get_formula_name function works correctly.
+
+    Parameters: none
+    Return: nothing
+    """
+
 
 
 # Call the main function that is part of pytest so that the

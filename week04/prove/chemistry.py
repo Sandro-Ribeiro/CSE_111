@@ -9,8 +9,7 @@ SYMBOL_INDEX = 0
 QUANTITY_INDEX = 1
 
 def make_periodic_table():
-    """
-    The make_periodic_table function takes no parameters and creates and 
+    """The make_periodic_table function takes no parameters and creates and 
     returns a compound list. The compound list must contain all the data 
     in the table of elements presents in periodic table.
     """
@@ -149,8 +148,7 @@ def compute_molar_mass(symbol_quantity_list, periodic_table_dict):
     return total_molar_mass
 
 def number_of_moles(total_molar_mass, grams_of_the_sanples):
-    """
-    Compute and return the number of moles in the sample from
+    """Compute and return the number of moles in the sample from
     total molar mass and grams of the sample.
     """
     number_moles =  grams_of_the_sanples/total_molar_mass

@@ -1,7 +1,7 @@
 # Copyright 2020, Brigham Young University-Idaho. All rights reserved.
 
 from chemistry import make_periodic_table, compute_molar_mass, sum_protons, \
-    number_moles, number_protons, get_formula_name
+    number_moles, number_protons, get_formula_name, make_known_molecules_table
 from formula import parse_formula, FormulaError
 from pytest import approx
 import pytest
@@ -12,11 +12,80 @@ import pytest
 NAME_INDEX = 0
 ATOMIC_MASS_INDEX = 1
 
+def teste_make_known_molecules_table():
+    """Verify that the make_periodic_table function works correctly.
+    Parameters, none
+    Return, nothing
+    """
+    # Call the make_known_molecules_table function and store the returned
+    # dictionary in a variable named periodic_table_dict.
+    known_molecules_dict = make_known_molecules_table()
 
+    # Verify that the make_known_molecules_table function returns a dictionary.
+    assert isinstance(known_molecules_dict, dict), \
+        "make_known_molecules_table function must return a dictionary, " \
+        f" expected a dictionary but found a {type(known_molecules_dict)}"
+
+    # Check each item in the periodic table dictionary.
+    check_element_1(known_molecules_dict, "H2O", "water")
+    check_element_1(known_molecules_dict, "O2", "molecular oxygen")
+    check_element_1(known_molecules_dict, "CO2", "carbon dioxide")
+    check_element_1(known_molecules_dict, "N2", "molecular nitrogen")
+    check_element_1(known_molecules_dict, "CH4", "methane")
+    check_element_1(known_molecules_dict, "NH3", "ammonia")
+    check_element_1(known_molecules_dict, "H2", "molecular hydrogen")
+    check_element_1(known_molecules_dict, "CO", "carbon monoxide")
+    check_element_1(known_molecules_dict, "SO2", "sulfur dioxide")
+    check_element_1(known_molecules_dict, "H2SO4", "sulfuric acid")
+    check_element_1(known_molecules_dict, "NaCl", "sodium chloride (table salt)")
+    check_element_1(known_molecules_dict, "C6H12O6", "glucose")
+    check_element_1(known_molecules_dict, "HCl", "hydrochloric acid")
+    check_element_1(known_molecules_dict, "CaCO3", "calcium carbonate")
+    check_element_1(known_molecules_dict, "HNO3", "nitric acid")
+    check_element_1(known_molecules_dict, "O3", "ozone")
+    check_element_1(known_molecules_dict, "Al2O3", "aluminum oxide")
+    check_element_1(known_molecules_dict, "CH3OH", "methanol")
+    check_element_1(known_molecules_dict, "C2H6O", "ethanol")
+    check_element_1(known_molecules_dict, "C2H5OH", "ethanol")
+    check_element_1(known_molecules_dict, "C3H8O", "isopropyl alcohol")
+    check_element_1(known_molecules_dict, "C3H8", "propane")
+    check_element_1(known_molecules_dict, "C4H10", "butane")
+    check_element_1(known_molecules_dict, "C6H6", "benzene")
+    check_element_1(known_molecules_dict, "C6H14", "hexane")
+    check_element_1(known_molecules_dict, "C8H18", "octane")
+    check_element_1(known_molecules_dict, "CH3(CH2)6CH3", "octane")
+    check_element_1(known_molecules_dict, "C13H18O2", "ibuprofen")
+    check_element_1(known_molecules_dict, "C13H16N2O2", "melatonin")
+    check_element_1(known_molecules_dict, "Fe2O3", "iron oxide")
+    check_element_1(known_molecules_dict, "FeS2", "iron pyrite")
+
+def check_element_1(known_molecules_dict, symbol, expected):
+    """Verify that the actual element that came from the
+    known_molecules_dict contains the same values as the
+    expected element.
+
+    Parameters
+        symbol, a symbol for a chemical element
+        expected, a list that contains the expected values for symbol
+    Return, nothing
+    """
+    # Verify that symbol is in the periodic table dictionary.
+    assert symbol in known_molecules_dict, \
+        f'"{symbol}" is missing from the known molecules dictionary.'
+    
+    actual = known_molecules_dict[symbol]
+
+    # Verify that the element's name is correct.
+    act_name = actual[NAME_INDEX]
+    exp_name = expected[NAME_INDEX]
+    assert act_name == exp_name, \
+            f'wrong name for "{symbol}", ' \
+            f'expected {exp_name} but found {act_name}'
+                  
 def test_make_periodic_table():
     """Verify that the make_periodic_table function works correctly.
-    Parameters: none
-    Return: nothing
+    Parameters, none
+    Return, nothing
     """
     # Call the make_periodic_table function and store the returned
     # dictionary in a variable named periodic_table_dict.
@@ -24,115 +93,115 @@ def test_make_periodic_table():
 
     # Verify that the make_periodic_table function returns a dictionary.
     assert isinstance(periodic_table_dict, dict), \
-        "make_periodic_table function must return a dictionary: " \
+        "make_periodic_table function must return a dictionary, " \
         f" expected a dictionary but found a {type(periodic_table_dict)}"
 
     # Check each item in the periodic table dictionary.
-    check_element(periodic_table_dict, "Ac", ["Actinium", 227])
-    check_element(periodic_table_dict, "Ag", ["Silver", 107.8682])
-    check_element(periodic_table_dict, "Al", ["Aluminum", 26.9815386])
-    check_element(periodic_table_dict, "Ar", ["Argon", 39.948])
-    check_element(periodic_table_dict, "As", ["Arsenic", 74.9216])
-    check_element(periodic_table_dict, "At", ["Astatine", 210])
-    check_element(periodic_table_dict, "Au", ["Gold", 196.966569])
-    check_element(periodic_table_dict, "B", ["Boron", 10.811])
-    check_element(periodic_table_dict, "Ba", ["Barium", 137.327])
-    check_element(periodic_table_dict, "Be", ["Beryllium", 9.012182])
-    check_element(periodic_table_dict, "Bi", ["Bismuth", 208.9804])
-    check_element(periodic_table_dict, "Br", ["Bromine", 79.904])
-    check_element(periodic_table_dict, "C", ["Carbon", 12.0107])
-    check_element(periodic_table_dict, "Ca", ["Calcium", 40.078])
-    check_element(periodic_table_dict, "Cd", ["Cadmium", 112.411])
-    check_element(periodic_table_dict, "Ce", ["Cerium", 140.116])
-    check_element(periodic_table_dict, "Cl", ["Chlorine", 35.453])
-    check_element(periodic_table_dict, "Co", ["Cobalt", 58.933195])
-    check_element(periodic_table_dict, "Cr", ["Chromium", 51.9961])
-    check_element(periodic_table_dict, "Cs", ["Cesium", 132.9054519])
-    check_element(periodic_table_dict, "Cu", ["Copper", 63.546])
-    check_element(periodic_table_dict, "Dy", ["Dysprosium", 162.5])
-    check_element(periodic_table_dict, "Er", ["Erbium", 167.259])
-    check_element(periodic_table_dict, "Eu", ["Europium", 151.964])
-    check_element(periodic_table_dict, "F", ["Fluorine", 18.9984032])
-    check_element(periodic_table_dict, "Fe", ["Iron", 55.845])
-    check_element(periodic_table_dict, "Fr", ["Francium", 223])
-    check_element(periodic_table_dict, "Ga", ["Gallium", 69.723])
-    check_element(periodic_table_dict, "Gd", ["Gadolinium", 157.25])
-    check_element(periodic_table_dict, "Ge", ["Germanium", 72.64])
-    check_element(periodic_table_dict, "H", ["Hydrogen", 1.00794])
-    check_element(periodic_table_dict, "He", ["Helium", 4.002602])
-    check_element(periodic_table_dict, "Hf", ["Hafnium", 178.49])
-    check_element(periodic_table_dict, "Hg", ["Mercury", 200.59])
-    check_element(periodic_table_dict, "Ho", ["Holmium", 164.93032])
-    check_element(periodic_table_dict, "I", ["Iodine", 126.90447])
-    check_element(periodic_table_dict, "In", ["Indium", 114.818])
-    check_element(periodic_table_dict, "Ir", ["Iridium", 192.217])
-    check_element(periodic_table_dict, "K", ["Potassium", 39.0983])
-    check_element(periodic_table_dict, "Kr", ["Krypton", 83.798])
-    check_element(periodic_table_dict, "La", ["Lanthanum", 138.90547])
-    check_element(periodic_table_dict, "Li", ["Lithium", 6.941])
-    check_element(periodic_table_dict, "Lu", ["Lutetium", 174.9668])
-    check_element(periodic_table_dict, "Mg", ["Magnesium", 24.305])
-    check_element(periodic_table_dict, "Mn", ["Manganese", 54.938045])
-    check_element(periodic_table_dict, "Mo", ["Molybdenum", 95.96])
-    check_element(periodic_table_dict, "N", ["Nitrogen", 14.0067])
-    check_element(periodic_table_dict, "Na", ["Sodium", 22.98976928])
-    check_element(periodic_table_dict, "Nb", ["Niobium", 92.90638])
-    check_element(periodic_table_dict, "Nd", ["Neodymium", 144.242])
-    check_element(periodic_table_dict, "Ne", ["Neon", 20.1797])
-    check_element(periodic_table_dict, "Ni", ["Nickel", 58.6934])
-    check_element(periodic_table_dict, "Np", ["Neptunium", 237])
-    check_element(periodic_table_dict, "O", ["Oxygen", 15.9994])
-    check_element(periodic_table_dict, "Os", ["Osmium", 190.23])
-    check_element(periodic_table_dict, "P", ["Phosphorus", 30.973762])
-    check_element(periodic_table_dict, "Pa", ["Protactinium", 231.03588])
-    check_element(periodic_table_dict, "Pb", ["Lead", 207.2])
-    check_element(periodic_table_dict, "Pd", ["Palladium", 106.42])
-    check_element(periodic_table_dict, "Pm", ["Promethium", 145])
-    check_element(periodic_table_dict, "Po", ["Polonium", 209])
-    check_element(periodic_table_dict, "Pr", ["Praseodymium", 140.90765])
-    check_element(periodic_table_dict, "Pt", ["Platinum", 195.084])
-    check_element(periodic_table_dict, "Pu", ["Plutonium", 244])
-    check_element(periodic_table_dict, "Ra", ["Radium", 226])
-    check_element(periodic_table_dict, "Rb", ["Rubidium", 85.4678])
-    check_element(periodic_table_dict, "Re", ["Rhenium", 186.207])
-    check_element(periodic_table_dict, "Rh", ["Rhodium", 102.9055])
-    check_element(periodic_table_dict, "Rn", ["Radon", 222])
-    check_element(periodic_table_dict, "Ru", ["Ruthenium", 101.07])
-    check_element(periodic_table_dict, "S", ["Sulfur", 32.065])
-    check_element(periodic_table_dict, "Sb", ["Antimony", 121.76])
-    check_element(periodic_table_dict, "Sc", ["Scandium", 44.955912])
-    check_element(periodic_table_dict, "Se", ["Selenium", 78.96])
-    check_element(periodic_table_dict, "Si", ["Silicon", 28.0855])
-    check_element(periodic_table_dict, "Sm", ["Samarium", 150.36])
-    check_element(periodic_table_dict, "Sn", ["Tin", 118.71])
-    check_element(periodic_table_dict, "Sr", ["Strontium", 87.62])
-    check_element(periodic_table_dict, "Ta", ["Tantalum", 180.94788])
-    check_element(periodic_table_dict, "Tb", ["Terbium", 158.92535])
-    check_element(periodic_table_dict, "Tc", ["Technetium", 98])
-    check_element(periodic_table_dict, "Te", ["Tellurium", 127.6])
-    check_element(periodic_table_dict, "Th", ["Thorium", 232.03806])
-    check_element(periodic_table_dict, "Ti", ["Titanium", 47.867])
-    check_element(periodic_table_dict, "Tl", ["Thallium", 204.3833])
-    check_element(periodic_table_dict, "Tm", ["Thulium", 168.93421])
-    check_element(periodic_table_dict, "U", ["Uranium", 238.02891])
-    check_element(periodic_table_dict, "V", ["Vanadium", 50.9415])
-    check_element(periodic_table_dict, "W", ["Tungsten", 183.84])
-    check_element(periodic_table_dict, "Xe", ["Xenon", 131.293])
-    check_element(periodic_table_dict, "Y", ["Yttrium", 88.90585])
-    check_element(periodic_table_dict, "Yb", ["Ytterbium", 173.054])
-    check_element(periodic_table_dict, "Zn", ["Zinc", 65.38])
-    check_element(periodic_table_dict, "Zr", ["Zirconium", 91.224])
+    check_element_2(periodic_table_dict, "Ac", ["Actinium", 227])
+    check_element_2(periodic_table_dict, "Ag", ["Silver", 107.8682])
+    check_element_2(periodic_table_dict, "Al", ["Aluminum", 26.9815386])
+    check_element_2(periodic_table_dict, "Ar", ["Argon", 39.948])
+    check_element_2(periodic_table_dict, "As", ["Arsenic", 74.9216])
+    check_element_2(periodic_table_dict, "At", ["Astatine", 210])
+    check_element_2(periodic_table_dict, "Au", ["Gold", 196.966569])
+    check_element_2(periodic_table_dict, "B", ["Boron", 10.811])
+    check_element_2(periodic_table_dict, "Ba", ["Barium", 137.327])
+    check_element_2(periodic_table_dict, "Be", ["Beryllium", 9.012182])
+    check_element_2(periodic_table_dict, "Bi", ["Bismuth", 208.9804])
+    check_element_2(periodic_table_dict, "Br", ["Bromine", 79.904])
+    check_element_2(periodic_table_dict, "C", ["Carbon", 12.0107])
+    check_element_2(periodic_table_dict, "Ca", ["Calcium", 40.078])
+    check_element_2(periodic_table_dict, "Cd", ["Cadmium", 112.411])
+    check_element_2(periodic_table_dict, "Ce", ["Cerium", 140.116])
+    check_element_2(periodic_table_dict, "Cl", ["Chlorine", 35.453])
+    check_element_2(periodic_table_dict, "Co", ["Cobalt", 58.933195])
+    check_element_2(periodic_table_dict, "Cr", ["Chromium", 51.9961])
+    check_element_2(periodic_table_dict, "Cs", ["Cesium", 132.9054519])
+    check_element_2(periodic_table_dict, "Cu", ["Copper", 63.546])
+    check_element_2(periodic_table_dict, "Dy", ["Dysprosium", 162.5])
+    check_element_2(periodic_table_dict, "Er", ["Erbium", 167.259])
+    check_element_2(periodic_table_dict, "Eu", ["Europium", 151.964])
+    check_element_2(periodic_table_dict, "F", ["Fluorine", 18.9984032])
+    check_element_2(periodic_table_dict, "Fe", ["Iron", 55.845])
+    check_element_2(periodic_table_dict, "Fr", ["Francium", 223])
+    check_element_2(periodic_table_dict, "Ga", ["Gallium", 69.723])
+    check_element_2(periodic_table_dict, "Gd", ["Gadolinium", 157.25])
+    check_element_2(periodic_table_dict, "Ge", ["Germanium", 72.64])
+    check_element_2(periodic_table_dict, "H", ["Hydrogen", 1.00794])
+    check_element_2(periodic_table_dict, "He", ["Helium", 4.002602])
+    check_element_2(periodic_table_dict, "Hf", ["Hafnium", 178.49])
+    check_element_2(periodic_table_dict, "Hg", ["Mercury", 200.59])
+    check_element_2(periodic_table_dict, "Ho", ["Holmium", 164.93032])
+    check_element_2(periodic_table_dict, "I", ["Iodine", 126.90447])
+    check_element_2(periodic_table_dict, "In", ["Indium", 114.818])
+    check_element_2(periodic_table_dict, "Ir", ["Iridium", 192.217])
+    check_element_2(periodic_table_dict, "K", ["Potassium", 39.0983])
+    check_element_2(periodic_table_dict, "Kr", ["Krypton", 83.798])
+    check_element_2(periodic_table_dict, "La", ["Lanthanum", 138.90547])
+    check_element_2(periodic_table_dict, "Li", ["Lithium", 6.941])
+    check_element_2(periodic_table_dict, "Lu", ["Lutetium", 174.9668])
+    check_element_2(periodic_table_dict, "Mg", ["Magnesium", 24.305])
+    check_element_2(periodic_table_dict, "Mn", ["Manganese", 54.938045])
+    check_element_2(periodic_table_dict, "Mo", ["Molybdenum", 95.96])
+    check_element_2(periodic_table_dict, "N", ["Nitrogen", 14.0067])
+    check_element_2(periodic_table_dict, "Na", ["Sodium", 22.98976928])
+    check_element_2(periodic_table_dict, "Nb", ["Niobium", 92.90638])
+    check_element_2(periodic_table_dict, "Nd", ["Neodymium", 144.242])
+    check_element_2(periodic_table_dict, "Ne", ["Neon", 20.1797])
+    check_element_2(periodic_table_dict, "Ni", ["Nickel", 58.6934])
+    check_element_2(periodic_table_dict, "Np", ["Neptunium", 237])
+    check_element_2(periodic_table_dict, "O", ["Oxygen", 15.9994])
+    check_element_2(periodic_table_dict, "Os", ["Osmium", 190.23])
+    check_element_2(periodic_table_dict, "P", ["Phosphorus", 30.973762])
+    check_element_2(periodic_table_dict, "Pa", ["Protactinium", 231.03588])
+    check_element_2(periodic_table_dict, "Pb", ["Lead", 207.2])
+    check_element_2(periodic_table_dict, "Pd", ["Palladium", 106.42])
+    check_element_2(periodic_table_dict, "Pm", ["Promethium", 145])
+    check_element_2(periodic_table_dict, "Po", ["Polonium", 209])
+    check_element_2(periodic_table_dict, "Pr", ["Praseodymium", 140.90765])
+    check_element_2(periodic_table_dict, "Pt", ["Platinum", 195.084])
+    check_element_2(periodic_table_dict, "Pu", ["Plutonium", 244])
+    check_element_2(periodic_table_dict, "Ra", ["Radium", 226])
+    check_element_2(periodic_table_dict, "Rb", ["Rubidium", 85.4678])
+    check_element_2(periodic_table_dict, "Re", ["Rhenium", 186.207])
+    check_element_2(periodic_table_dict, "Rh", ["Rhodium", 102.9055])
+    check_element_2(periodic_table_dict, "Rn", ["Radon", 222])
+    check_element_2(periodic_table_dict, "Ru", ["Ruthenium", 101.07])
+    check_element_2(periodic_table_dict, "S", ["Sulfur", 32.065])
+    check_element_2(periodic_table_dict, "Sb", ["Antimony", 121.76])
+    check_element_2(periodic_table_dict, "Sc", ["Scandium", 44.955912])
+    check_element_2(periodic_table_dict, "Se", ["Selenium", 78.96])
+    check_element_2(periodic_table_dict, "Si", ["Silicon", 28.0855])
+    check_element_2(periodic_table_dict, "Sm", ["Samarium", 150.36])
+    check_element_2(periodic_table_dict, "Sn", ["Tin", 118.71])
+    check_element_2(periodic_table_dict, "Sr", ["Strontium", 87.62])
+    check_element_2(periodic_table_dict, "Ta", ["Tantalum", 180.94788])
+    check_element_2(periodic_table_dict, "Tb", ["Terbium", 158.92535])
+    check_element_2(periodic_table_dict, "Tc", ["Technetium", 98])
+    check_element_2(periodic_table_dict, "Te", ["Tellurium", 127.6])
+    check_element_2(periodic_table_dict, "Th", ["Thorium", 232.03806])
+    check_element_2(periodic_table_dict, "Ti", ["Titanium", 47.867])
+    check_element_2(periodic_table_dict, "Tl", ["Thallium", 204.3833])
+    check_element_2(periodic_table_dict, "Tm", ["Thulium", 168.93421])
+    check_element_2(periodic_table_dict, "U", ["Uranium", 238.02891])
+    check_element_2(periodic_table_dict, "V", ["Vanadium", 50.9415])
+    check_element_2(periodic_table_dict, "W", ["Tungsten", 183.84])
+    check_element_2(periodic_table_dict, "Xe", ["Xenon", 131.293])
+    check_element_2(periodic_table_dict, "Y", ["Yttrium", 88.90585])
+    check_element_2(periodic_table_dict, "Yb", ["Ytterbium", 173.054])
+    check_element_2(periodic_table_dict, "Zn", ["Zinc", 65.38])
+    check_element_2(periodic_table_dict, "Zr", ["Zirconium", 91.224])
 
 
-def check_element(periodic_table_dict, symbol, expected):
+def check_element_2(periodic_table_dict, symbol, expected):
     """Verify that the actual element that came from the
     periodic_table_dict contains the same values as the
     expected element.
 
     Parameters
-        symbol: a symbol for a chemical element
-        expected: a list that contains the expected values for symbol
-    Return: nothing
+        symbol, a symbol for a chemical element
+        expected, a list that contains the expected values for symbol
+    Return, nothing
     """
     # Verify that symbol is in the periodic table dictionary.
     assert symbol in periodic_table_dict, \
@@ -143,35 +212,35 @@ def check_element(periodic_table_dict, symbol, expected):
     act_name = actual[NAME_INDEX]
     exp_name = expected[NAME_INDEX]
     assert act_name == exp_name, \
-            f'wrong name for "{symbol}": ' \
+            f'wrong name for "{symbol}", ' \
             f'expected {exp_name} but found {act_name}'
 
     # Verify that the element's atomic mass is correct.
     act_mass = actual[ATOMIC_MASS_INDEX]
     exp_mass = expected[ATOMIC_MASS_INDEX]
     assert act_mass == approx(exp_mass), \
-            f"wrong atomic mass for {exp_name}: " \
+            f"wrong atomic mass for {exp_name}, " \
             f"expected {exp_mass} but found {act_mass}"
 
 
 def test_parse_formula():
     """Verify that the parse_formula function works correctly.
 
-    Parameters: none
-    Return: nothing
+    Parameters, none
+    Return, nothing
     """
     # Call the make_periodic_table function
     # and verify that it returns a dictionary.
     periodic_table_dict = make_periodic_table()
     assert isinstance(periodic_table_dict, dict), \
-        "make_periodic_table function must return a dictionary: " \
+        "make_periodic_table function must return a dictionary, " \
         f" expected a dictionary but found a {type(periodic_table_dict)}"
 
     # Call the parse_formula function and
     # verify that it returns a list.
     sym_quant_list = parse_formula("H2O", periodic_table_dict)
     assert isinstance(sym_quant_list, list), \
-        "parse_formula function must return a list: " \
+        "parse_formula function must return a list, " \
         f" expected a list but found a {type(sym_quant_list)}"
 
     # Call the compute_molar_mass function four times and
@@ -205,21 +274,21 @@ def test_parse_formula():
 def test_compute_molar_mass():
     """Verify that the compute_molar_mass function works correctly.
 
-    Parameters: none
-    Return: nothing
+    Parameters, none
+    Return, nothing
     """
     # Call the make_periodic_table function
     # and verify that it returns a dictionary.
     periodic_table_dict = make_periodic_table()
     assert isinstance(periodic_table_dict, dict), \
-        "make_periodic_table function must return a dictionary: " \
+        "make_periodic_table function must return a dictionary, " \
         f" expected a dictionary but found a {type(periodic_table_dict)}"
 
     # Call the compute_molar_mass function
     # and verify that it returns a number.
     molar_mass = compute_molar_mass([["O",2]], periodic_table_dict)
     assert isinstance(molar_mass, int) or isinstance(molar_mass, float), \
-        "compute_molar_mass function must return a number: " \
+        "compute_molar_mass function must return a number, " \
         f" expected a number but found a {type(molar_mass)}"
 
     # Call the compute_molar_mass function four times and
@@ -235,22 +304,22 @@ def test_compute_molar_mass():
 def test_sum_protons():
     """Verify that the sum_protons function works correctly.
 
-    Parameters: none
-    Return: nothing
+    Parameters, none
+    Return, nothing
     """
     # Call the make_periodic_table function
     # and verify that it returns a dictionary.
     periodic_table_dict = make_periodic_table()
     assert isinstance(periodic_table_dict, dict), \
-        "make_periodic_table function must return a dictionary: " \
+        "make_periodic_table function must return a dictionary, " \
         f" expected a dictionary but found a {type(periodic_table_dict)}"
 
     # Call the compute_molar_mass function
     # and verify that it returns a number.
     total_protons = sum_protons([["O",2]], periodic_table_dict)
-    assert isinstance(sum_protons, int) or isinstance(sum_protons, float), \
-        "compute_molar_mass function must return a number: " \
-        f" expected a number but found a {type(total_protons)}"
+    assert isinstance(total_protons, int) or isinstance(total_protons, float), \
+        "sum_protons function must return a number, " \
+        f"expected a number but found a {type(total_protons)}"
 
     # Call the compute_molar_mass function four times and
     # verify that it returns the correct number each time.
@@ -266,26 +335,71 @@ def test_sum_protons():
 def test_number_moles():
     """Verify that the number_moles function works correctly.
 
-    Parameters: none
-    Return: nothing
+    Parameters, none
+    Return, nothing
     """
-    total_moles = number_moles( )
+    # Call the number_moles function
+    # and verify that it returns a number.
+    number_moles_sample = number_moles(31.9988, 25.04)
+    assert isinstance(number_moles_sample, int) or isinstance(number_moles_sample, float), \
+        "compute_molar_mass function must return a number, " \
+        f" expected a number but found a {type(number_moles_sample)}"
+    
+    # Call the number function four times and
+    # verify that it returns the correct number each time.
+    assert number_moles(0, 0) == 0
+    assert number_moles(31.9988, 25.04) == approx(0.78253, rel=1e-4)
+    assert number_moles(78.11184, 25.04) == approx(0.32057, rel=1e-4)
+    assert number_moles(232.27834, 25.04) == approx(0.10780, rel=1e-4)
+
     
 def test_number_protons():
     """Verify that the number_protons function works correctly.
 
-    Parameters: none
-    Return: nothing
-    """   
+    Parameters, none
+    Return, nothing
+    """
+    # Call the number_protons function
+    # and verify that it returns a number.
+    number_protons_sample = number_protons(42, 0.32057)
+    assert isinstance(number_protons_sample, int) or isinstance(number_protons_sample, float), \
+        "number_protons function must return a number, " \
+        f" expected a number but found a {type(number_protons_sample)}"
+    
+    # Call the number_protons function four times and
+    # verify that it returns the correct number each time.
+    assert number_protons(0, 0) == 0
+    assert number_protons(16, 0.78253) == approx(7.540009e+24, rel=1e-4)
+    assert number_protons(42, 0.32057) == approx(8.108174e+24, rel=1e-4)
+    assert number_protons(124, 0.10780) == approx(8.049916e+24, rel=1e-4)
+
     
 def test_get_formula_name():
     """Verify that the get_formula_name function works correctly.
 
-    Parameters: none
-    Return: nothing
+    Parameters, none
+    Return, nothing
     """
+    # Call the make_known_molecules_table function
+    # and verify that it returns a dictionary.
+    known_molecules_dict = make_known_molecules_table()
+    assert isinstance(known_molecules_dict, dict), \
+        "make_known_molecules_table function must return a dictionary, " \
+        f" expected a dictionary but found a {type(known_molecules_dict)}"
 
-
+    # Call the number_protons function
+    # and verify that it returns a number.
+    formula_name = get_formula_name("CO2", known_molecules_dict)
+    assert isinstance(formula_name, str), \
+        "formula_name function must return a string, " \
+        f" expected a number but found a {type(formula_name)}"
+    
+    # Call the number_protons function four times and
+    # verify that it returns the correct number each time.
+    assert get_formula_name("CO2", known_molecules_dict) == "carbon dioxide" 
+    assert get_formula_name("H2", known_molecules_dict) == "molecular hydrogen"
+    assert get_formula_name("NaCl", known_molecules_dict) == "sodium chloride (table salt)"
+    assert get_formula_name("Al2O3", known_molecules_dict) == "aluminum oxide"
 
 # Call the main function that is part of pytest so that the
 # computer will execute the test functions in this file.

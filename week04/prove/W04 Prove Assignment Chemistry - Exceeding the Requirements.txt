@@ -2,4 +2,6 @@ W04 Prove Assignment: Chemistry - Exceeding the Requirements
 
 1. Program tries to find the user entered chemical formula in a list of known formulas and if found prints the formula name 
 2. Program prints the total number of protons in a molecule of the user given formula 
-3. Program includes some other additional functionality. You must include a note, as a comment at the top of your code, so the graders can more easily pick out what you have done.
+3. Program includes some other additional functionality. 
+
+You must include a note, as a comment at the top of your code, so the graders can more easily pick out what you have done.

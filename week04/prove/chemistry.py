@@ -13,39 +13,46 @@ QUANTITY_INDEX = 1
 # Mole
 MOL = 6.02214076 * pow(10,23)
 
-known_molecules_dict = {
-    "H2O": "water",
-    "O2": "molecular oxygen",
-    "CO2": "carbon dioxide",
-    "N2": "molecular nitrogen",
-    "CH4": "methane",
-    "NH3": "ammonia",
-    "H2": "molecular hydrogen",
-    "CO": "carbon monoxide",
-    "SO2": "sulfur dioxide",
-    "H2SO4": "sulfuric acid",
-    "NaCl": "sodium chloride (table salt)",
-    "C6H12O6": "glucose",
-    "HCl": "hydrochloric acid",
-    "CaCO3": "calcium carbonate",
-    "HNO3": "nitric acid",
-    "O3": "ozone",
-    "Al2O3": "aluminum oxide",
-    "CH3OH": "methanol",
-    "C2H6O": "ethanol",
-    "C2H5OH": "ethanol",
-    "C3H8O": "isopropyl alcohol",
-    "C3H8": "propane",
-    "C4H10": "butane",
-    "C6H6": "benzene",
-    "C6H14": "hexane",
-    "C8H18": "octane",
-    "CH3(CH2)6CH3": "octane",
-    "C13H18O2": "ibuprofen",
-    "C13H16N2O2": "melatonin",
-    "Fe2O3": "iron oxide",
-    "FeS2": "iron pyrite"
-}
+def make_known_molecules_table():
+    """The make_periodic_table function takes no parameters and creates and 
+    returns a compound list. The compound list must contain all the data 
+    in the table of elements presents in periodic table.
+    """
+    known_molecules_dict = {
+        "H2O": "water",
+        "O2": "molecular oxygen",
+        "CO2": "carbon dioxide",
+        "N2": "molecular nitrogen",
+        "CH4": "methane",
+        "NH3": "ammonia",
+        "H2": "molecular hydrogen",
+        "CO": "carbon monoxide",
+        "SO2": "sulfur dioxide",
+        "H2SO4": "sulfuric acid",
+        "NaCl": "sodium chloride (table salt)",
+        "C6H12O6": "glucose",
+        "HCl": "hydrochloric acid",
+        "CaCO3": "calcium carbonate",
+        "HNO3": "nitric acid",
+        "O3": "ozone",
+        "Al2O3": "aluminum oxide",
+        "CH3OH": "methanol",
+        "C2H6O": "ethanol",
+        "C2H5OH": "ethanol",
+        "C3H8O": "isopropyl alcohol",
+        "C3H8": "propane",
+        "C4H10": "butane",
+        "C6H6": "benzene",
+        "C6H14": "hexane",
+        "C8H18": "octane",
+        "CH3(CH2)6CH3": "octane",
+        "C13H18O2": "ibuprofen",
+        "C13H16N2O2": "melatonin",
+        "Fe2O3": "iron oxide",
+        "FeS2": "iron pyrite"
+    }
+
+    return known_molecules_dict
 
 def make_periodic_table():
     """The make_periodic_table function takes no parameters and creates and 
@@ -185,6 +192,7 @@ def compute_molar_mass(symbol_quantity_list, periodic_table_dict):
                 atomic_mass = dict_list[ATOMIC_MASS_INDEX]
                 total_molar_mass += (atomic_mass * quantity)
     # Return the total molar mass.
+
     return total_molar_mass
 
 def sum_protons(symbol_quantity_list, periodic_table_dict):
@@ -214,20 +222,24 @@ def sum_protons(symbol_quantity_list, periodic_table_dict):
     # Return the total molar mass.
     return total_protons
 
-def number_moles(total_molar_mass, grams_of_the_sanples):
+def number_moles(total_molar_mass, grams_of_the_sample):
     """This function calculates and returns the number of 
     moles in the sample from the total molar mass and weight 
     in grams of the sample.
     """
-    total_moles_sample =  grams_of_the_sanples/total_molar_mass
-    return total_moles_sample
+    if grams_of_the_sample != 0:
+        total_moles_sample =  grams_of_the_sample/total_molar_mass
+        return total_moles_sample
+    else:
+        return 0
+
 
 def number_protons(total_protons, total_moles_sample):
     """This function calculates and returns the number of protons in
     the sample from the number of protons in each molecule and the 
     number of moles in the sample.
     """
-    total_protons_sample = total_moles_sample * MOL * total_protons
+    total_protons_sample = total_protons * total_moles_sample * MOL 
     return total_protons_sample
 
 def get_formula_name(formula, known_molecules_dict):
@@ -245,8 +257,8 @@ def get_formula_name(formula, known_molecules_dict):
     for formula_dict, name_dict in known_molecules_dict.items():
         if formula == formula_dict:
             return name_dict
-        else:
-            return f"This formula's name: {formula} isn't in our registers"
+        
+    return f"{formula} isn't in our registers"
     
 def main():
     # Get a chemical formula for a molecule from the user.
@@ -254,6 +266,10 @@ def main():
 
     # Get the mass of a chemical sample in grams from the user.
     grams_of_the_sample = float(input("Enter the mass in grams of the sample: "))
+
+    # Call the make_known_molecules_table function and
+    # store the periodic table in a variable.
+    known_molecules_dict = make_known_molecules_table()
 
     # Call the make_periodic_table function and
     # store the periodic table in a variable.
@@ -278,6 +294,12 @@ def main():
     # Call the sum_protons function to compute the number of protons in the sample.
     number_protons_sample = number_protons(total_protons, number_moles_sample)
 
+    # call the get_formula_name function to return the name of the chemical formula
+    formula_name = get_formula_name(molecular_formula, known_molecules_dict)
+
+    # Print the name of the chemical formula
+    print(f"{formula_name}")
+
     # Print the molar mass.
     print(f"{total_molar_mass:.5f} grams/mole")
 
@@ -291,5 +313,5 @@ def main():
     print(f"{number_protons_sample:.5e} protóns in the sample")
 
 
-main()
-
+if __name__ == "__main__":
+    main()

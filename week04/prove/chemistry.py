@@ -1,3 +1,19 @@
+"""
+This code exceeds the requirements because the following features 
+have been added
+
+1. The program attempts to find the chemical formula entered by the user
+in a list of known formulas and, if found, prints the name of the formula
+
+2. The program prints the total number of protons in a molecule
+of the formula provided by the user
+
+3. The dictionary of known molecules was added by the make_molecules_table 
+function and tested by the test_make_known_molecules_table function. 
+All functions passed the tests.
+
+"""
+
 from formula import parse_formula
 import math
 

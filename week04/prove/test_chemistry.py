@@ -12,7 +12,7 @@ import pytest
 NAME_INDEX = 0
 ATOMIC_MASS_INDEX = 1
 
-def teste_make_known_molecules_table():
+def test_make_known_molecules_table():
     """Verify that the make_periodic_table function works correctly.
     Parameters, none
     Return, nothing

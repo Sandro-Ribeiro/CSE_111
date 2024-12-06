@@ -12,7 +12,7 @@ def main():
         filename = input("Enter the name of text file: ")
 
         # Read the text file specified by the user into a list.
-        text_lines = read_list(filename)
+        text_lines = read_list(f"./data/{filename}")
 
         # Get a line number from the user.
         linenum = int(input("Enter a line number: "))

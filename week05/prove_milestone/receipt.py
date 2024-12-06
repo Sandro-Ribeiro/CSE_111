@@ -36,10 +36,11 @@ def main():
     with open("./data/request.csv", "rt") as file:
             request_file = csv.reader(file)
             next(request_file)
+            print("Request Items")
             for line in request_file:
                 for key, valor in products_dict.items():
                         if line[ID_INDEX] == key:
-                            print(f"{valor[NAME_INDEX]}:{line[QTD_INDEX]} @ {valor[PRICE_INDEX]}")
+                            print(f"{valor[NAME_INDEX]}: {line[QTD_INDEX]} @ {valor[PRICE_INDEX]}")
 
 
 if __name__ == "__main__":

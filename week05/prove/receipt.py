@@ -45,7 +45,8 @@ def main():
     request_list = []
     qtd_sum = 0
     price_sum = 0
-    subtotal = 0
+    subtotal1 = 0
+    subtotal2 = 0
     sales_tax_rate = 0.06
 
     try:
@@ -86,14 +87,17 @@ def main():
 
     for item in request_list_order:
         if item[ITEM_QTD_INDEX] >= 2:
-            subtotal += ((item[ITEM_PRICE_INDEX] * 0.50) + (item[ITEM_PRICE_INDEX] * (item[ITEM_QTD_INDEX] - 1)))
+            subtotal1 += ((item[ITEM_PRICE_INDEX] * 0.50) + (item[ITEM_PRICE_INDEX] * (item[ITEM_QTD_INDEX] - 1)))
+            subtotal2 += ((item[ITEM_QTD_INDEX] * item[ITEM_PRICE_INDEX]))
         else:
-            subtotal += ((item[ITEM_QTD_INDEX] * item[ITEM_PRICE_INDEX]))
+            subtotal1 += ((item[ITEM_QTD_INDEX] * item[ITEM_PRICE_INDEX]))
+            subtotal2 += ((item[ITEM_QTD_INDEX] * item[ITEM_PRICE_INDEX]))
         price_sum = price_sum + item[ITEM_PRICE_INDEX]
         qtd_sum = qtd_sum + item[ITEM_QTD_INDEX]         
 
-    sales_tax = subtotal * sales_tax_rate
-    total = subtotal + sales_tax
+    sales_tax = subtotal1 * sales_tax_rate
+    discount = subtotal2 - subtotal1
+    total = subtotal1 + sales_tax
     now_time = time.ctime()
 
     clean_screen() 
@@ -105,9 +109,17 @@ def main():
     for item in request_list_order:
         print(f"{item[ITEM_NAME_INDEX]}: {item[ITEM_QTD_INDEX]} @ {item[ITEM_PRICE_INDEX]}")
         print("----------------------------------------------")
+    print()
+    print("----------------------------------------------")
+    print("                   Summary                    ")
+    print("----------------------------------------------")
     print(f"Number of items: {qtd_sum}")
     print("----------------------------------------------")
-    print(f"Subtotal: {subtotal: .2f}")
+    print(f"Subtotal without discount: {subtotal2: .2f}")
+    print("----------------------------------------------")
+    print(f"Discount: {discount: .2f}")
+    print("----------------------------------------------")
+    print(f"Subtotal with discount: {subtotal1: .2f}")
     print("----------------------------------------------")
     print(f"Sales Tax: {sales_tax: .2f}")
     print("----------------------------------------------")

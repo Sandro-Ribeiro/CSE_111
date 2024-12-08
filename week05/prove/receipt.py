@@ -37,21 +37,22 @@ def read_dictionary(filename, key_column_index):
 def main():
     REQ_ID_INDEX = 0
     REQ_QTD_INDEX = 1
-    ITEM_NAME_INDEX = 0
-    ITEM_PRICE_INDEX = 1
-    ITEM_QTD_INDEX = 2
-
-    try:
-        filename = "./data/products.csv"
-        products_dict = read_dictionary(filename, REQ_ID_INDEX)
-    except FileNotFoundError:
-        print("No such file or directory: 'products.csv'")
+    ITEM_ID_INDEX = 0
+    ITEM_NAME_INDEX = 1
+    ITEM_PRICE_INDEX = 2
+    ITEM_QTD_INDEX = 3
 
     request_list = []
     qtd_sum = 0
     price_sum = 0
     subtotal = 0
     sales_tax_rate = 0.06
+
+    try:
+        filename = "./data/products.csv"
+        products_dict = read_dictionary(filename, REQ_ID_INDEX)
+    except FileNotFoundError:
+        print("No such file or directory: 'products.csv'")
     
     try:
         with open("./data/request.csv", "rt") as file:
@@ -60,23 +61,37 @@ def main():
             for line in request_file:
                 key = line[REQ_ID_INDEX]
                 try:
-                    prod = products_dict[key]
+                    item = list(products_dict[key])
+                    item.append(line[REQ_QTD_INDEX])
+                    item[ITEM_PRICE_INDEX] = float(item[ITEM_PRICE_INDEX])
+                    item[ITEM_QTD_INDEX] = int(item[ITEM_QTD_INDEX])
+                    if request_list == []:
+                        request_list.append(item)
+                    else:
+                        item_found = False 
+                        for request_item in request_list:
+                            if item[ITEM_ID_INDEX] == request_item[ITEM_ID_INDEX]:
+                                request_item[ITEM_QTD_INDEX] = request_item[ITEM_QTD_INDEX] + item[ITEM_QTD_INDEX]
+                                item_found = True
+                        if not item_found:
+                            request_list.append(item)
                 except KeyError:
                     print(f"the {key} isn't known product ID in the request.csv file")
                     print()
                     input("Press Enter to continue ...")
-                item = prod[1:]
-                item.append(line[REQ_QTD_INDEX])
-                price_item = float(item[ITEM_PRICE_INDEX])
-                qtd_item = int(item[ITEM_QTD_INDEX])
-                price_sum = price_sum + price_item
-                qtd_sum = qtd_sum + qtd_item
-                subtotal = subtotal + (qtd_item * price_item)
-                request_list.append(item)
     except PermissionError:
-        print("No such file or directory: 'request.csv'")        
+        print("No such file or directory: 'request.csv'")
 
-    request_list_order = sorted(request_list)
+    request_list_order = sorted(request_list, key = lambda x: x[2])
+
+    for item in request_list_order:
+        if item[ITEM_QTD_INDEX] >= 2:
+            subtotal += ((item[ITEM_PRICE_INDEX] * 0.50) + (item[ITEM_PRICE_INDEX] * (item[ITEM_QTD_INDEX] - 1)))
+        else:
+            subtotal += ((item[ITEM_QTD_INDEX] * item[ITEM_PRICE_INDEX]))
+        price_sum = price_sum + item[ITEM_PRICE_INDEX]
+        qtd_sum = qtd_sum + item[ITEM_QTD_INDEX]         
+
     sales_tax = subtotal * sales_tax_rate
     total = subtotal + sales_tax
     now_time = time.ctime()

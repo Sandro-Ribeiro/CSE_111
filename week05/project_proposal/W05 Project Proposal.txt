@@ -1,0 +1,41 @@
+W05 Project: Proposal
+
+Student: Sandro Henrique Antunes Ribeiro
+
+Program Title
+
+	File Organizer Program
+
+Program Description
+
+	The program reorganizes and renames files in a specified folder 
+	based on user-defined criteria. The application is useful for 
+	organizing large volumes of files, using metadata and other 
+	information to categorize and rename files efficiently.
+
+Learning objectives
+
+1.	File and directory manipulation in Python.
+2.	Extracting and using file metadata.
+3.	Using Python modules such as os and shutil.
+
+Modules Used
+
+1.	os: For file and directory manipulation.
+2.	shutil: For advanced file and directory operations.
+3.	datetime: For date and time manipulation.
+4.	unittest: For creating and running automated tests.
+
+Functions
+
+1.	list_files(directory): Lists all files in a specified directory.
+2.	get_metadata(file): Gets the metadata of a file.
+3.	rename_file(file, new_name): Renames a file to the specified new name.
+4.	reorganize_files(directory, criteria): Reorganizes files in a directory 
+	based on specified criteria (e.g., creation date).
+
+Test Functions
+1.	test_list_files(): Tests the file listing function.
+2.	test_get_metadata(): Tests the metadata retrieval function.
+3.	test_rename_file(): Tests the file renaming function.
+4.	test_reorganize_files(): Tests the file reorganization function

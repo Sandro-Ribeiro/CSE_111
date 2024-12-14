@@ -153,10 +153,10 @@ def populate_main_window(frm_main):
                 # clear the bmi label.
                 lbl_bmi.config(text="")
     
-        if ans_bmi < 18.5: 
+        if ans_bmi <= 18.5: 
             lbl_message.config(text="Your BMI shows you're underweight. Consider consulting a healthcare provider to ensure proper nutrition")
             
-        if ans_bmi >= 18.5 and ans_bmi <= 25: 
+        if ans_bmi > 18.5 and ans_bmi <= 25: 
             lbl_message.config(text="Your BMI is normal. Keep maintaining a healthy lifestyle")
             
         if ans_bmi > 25 and ans_bmi <= 30: 

@@ -20,6 +20,7 @@ def get_exif_data(image_path):
     Extracts the EXIF metadata from an image, 
     including GPS and date information.
     """
+    
     image = Image.open(image_path)
     exif_data = image._getexif()
     if not exif_data:

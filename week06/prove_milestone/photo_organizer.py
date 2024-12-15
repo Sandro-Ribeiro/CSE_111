@@ -60,7 +60,8 @@ def convert_to_decimal_degrees(dms, ref):
 def parse_gps_coordinates(gps_data):
 
     """
-    Parses GPS metadata into decimal degrees (latitude and longitude).
+    Parses GPS metadata into decimal degrees 
+    (latitude and longitude).
     """
 
     if not gps_data:
@@ -68,8 +69,12 @@ def parse_gps_coordinates(gps_data):
 
     try:
         # Extract latitude and longitude in decimal degrees
-        lat = convert_to_decimal_degrees(gps_data["GPSLatitude"], gps_data["GPSLatitudeRef"])
-        lon = convert_to_decimal_degrees(gps_data["GPSLongitude"], gps_data["GPSLongitudeRef"])
+        lat = convert_to_decimal_degrees(
+            gps_data["GPSLatitude"], 
+            gps_data["GPSLatitudeRef"])
+        lon = convert_to_decimal_degrees(
+            gps_data["GPSLongitude"], 
+            gps_data["GPSLongitudeRef"])
 
         return lat, lon
     
@@ -81,7 +86,8 @@ def parse_gps_coordinates(gps_data):
 def parse_gps_datetime(date_stamp, time_stamp):
 
     """
-    Combines GPSDateStamp and GPSTimeStamp into a datetime object.
+    Combines GPSDateStamp and GPSTimeStamp into 
+    a datetime object.
     """
 
     date_str = date_stamp.replace(':', '-')
@@ -93,7 +99,8 @@ def parse_gps_datetime(date_stamp, time_stamp):
 def format_location(address):
 
     """
-    Formats the location name based on the address data.
+    Formats the location name based on the 
+    address data.
     """
 
     city = address.get("city", "Unknown City")
@@ -108,10 +115,12 @@ def format_location(address):
 def get_location_name(lat, lon):
 
     """
-    Uses the Nominatim API to retrieve and format the location name from coordinates.
+    Uses the Nominatim API to retrieve and format 
+    the location name from coordinates.
     """
 
-    print(f"Requesting location for Coordinates: Latitude = {lat}, Longitude = {lon}")
+    print(f"Requesting location for Coordinates: 
+          Latitude = {lat}, Longitude = {lon}")
 
     url = "https://nominatim.openstreetmap.org/reverse"
 
@@ -190,7 +199,7 @@ def organize_photos_by_location_and_date(directory):
         if not exif_data:
             # Handle photos without metadata
             unknown_dir = os.path.join(directory, "Unknown Location")
-            
+
             os.makedirs(unknown_dir, exist_ok=True)
             os.rename(file_path, os.path.join(unknown_dir, filename))
 
@@ -222,5 +231,5 @@ def organize_photos_by_location_and_date(directory):
 
 # Example usage
 if __name__ == "__main__":
-    directory = "C:/Users/santu/Pictures/Photos"
+    directory = "C:/Users/santu/Pictures/Photos/"
     organize_photos_by_location_and_date(directory)

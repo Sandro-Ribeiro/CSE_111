@@ -8,7 +8,7 @@ information to categorize and rename files efficiently.
 """
 
 import os
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 from PIL.ExifTags import TAGS, GPSTAGS
 import requests
 from datetime import datetime
@@ -20,27 +20,27 @@ def get_exif_data(image_path):
     Extracts the EXIF metadata from an image, 
     including GPS and date information.
     """
+    try:
+        image = Image.open(image_path)
+        exif_data = image._getexif()  # or your specific EXIF handling code
+
+            # Map EXIF tags to their names
+        exif = {TAGS.get(k, k): v for k, v in exif_data.items()}
+        gps_data = {}
+
+        if "GPSInfo" in exif:
+            for key in exif["GPSInfo"].keys():
+                name = GPSTAGS.get(key, key)
+                gps_data[name] = exif["GPSInfo"][key]
+
+        return {
+            "date_taken": exif.get("DateTimeOriginal"),
+            "gps": gps_data
+        }
     
-    image = Image.open(image_path)
-    exif_data = image._getexif()
-
-    if not exif_data:
+    except UnidentifiedImageError:
+        print(f"Skipping non-image file: {image_path}")
         return None
-
-    # Map EXIF tags to their names
-    exif = {TAGS.get(k, k): v for k, v in exif_data.items()}
-    gps_data = {}
-
-    if "GPSInfo" in exif:
-        for key in exif["GPSInfo"].keys():
-            name = GPSTAGS.get(key, key)
-            gps_data[name] = exif["GPSInfo"][key]
-
-    return {
-        "date_taken": exif.get("DateTimeOriginal"),
-        "gps": gps_data
-    }
-
 
 def convert_to_decimal_degrees(dms, ref):
 
@@ -119,8 +119,7 @@ def get_location_name(lat, lon):
     the location name from coordinates.
     """
 
-    print(f"Requesting location for Coordinates: 
-          Latitude = {lat}, Longitude = {lon}")
+    print(f"Requesting location for Coordinates: Latitude = {lat}, Longitude = {lon}")
 
     url = "https://nominatim.openstreetmap.org/reverse"
 
@@ -173,7 +172,7 @@ def organize_photo(file_path, location, date):
     Organizes a photo into a folder structure by location and year.
     """
 
-    base_dir = "C:/Users/santu/Pictures/Photos"
+    base_dir = "C:/Users/santu/Pictures/Photos/Lote01"
     location_dir = os.path.join(base_dir, location)
     year_dir = os.path.join(location_dir, str(date.year))
 
@@ -231,5 +230,5 @@ def organize_photos_by_location_and_date(directory):
 
 # Example usage
 if __name__ == "__main__":
-    directory = "C:/Users/santu/Pictures/Photos/"
+    directory = "C:/Users/santu/Pictures/Photos/Lote_01"
     organize_photos_by_location_and_date(directory)

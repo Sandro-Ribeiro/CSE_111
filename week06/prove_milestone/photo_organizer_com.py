@@ -16,32 +16,41 @@ import time  # Allows for time-based delays.
 
 def get_exif_data(image_path):
     """
-    Extracts EXIF metadata from an image file, including GPS and date information.
-    Parameters:
-        image_path (str): The path to the image file.
-    Returns:
-        dict: A dictionary containing the date the photo was taken and GPS metadata.
+        Extracts EXIF metadata from an image file, 
+        including GPS and date information.
+        Parameters:
+            image_path (str): The path to the image file.
+        Returns:
+            dict: A dictionary containing the date the 
+            photo was taken and GPS metadata.
     """
+
     # Open the image file using Pillow's Image class
     image = Image.open(image_path)
 
     # Retrieve the EXIF metadata from the image
-    exif_data = image._getexif()  
+    exif_data = image._getexif()
+
     if not exif_data:
-        return None  # Return None if the image has no metadata
+        # Return None if the image has no metadata
+        return None
 
     # Map EXIF tags to their readable names
     exif = {TAGS.get(k, k): v for k, v in exif_data.items()}
     gps_data = {}
+
     if "GPSInfo" in exif:
+
         # Extract GPS metadata using GPSTAGS for better readability
         for key in exif["GPSInfo"].keys():
             name = GPSTAGS.get(key, key)
             gps_data[name] = exif["GPSInfo"][key]
 
     return {
-        "date_taken": exif.get("DateTimeOriginal"),  # Extract the original date the photo was taken
-        "gps": gps_data  # Include parsed GPS metadata
+        # Extract the original date the photo was taken
+        # Include parsed GPS metadata
+        "date_taken": exif.get("DateTimeOriginal"),
+        "gps": gps_data 
     }
 
 def convert_to_decimal_degrees(dms, ref):
@@ -54,31 +63,46 @@ def convert_to_decimal_degrees(dms, ref):
     Returns:
         float: Decimal degree representation of the coordinate.
     """
+
     degrees, minutes, seconds = dms
+
     # Convert DMS to decimal degrees
     dd = degrees + (minutes / 60.0) + (seconds / 3600.0)
+
     if ref in ['S', 'W']:
         # South and West should have negative coordinates
         dd = -dd
+
     return dd
 
 def parse_gps_coordinates(gps_data):
     """
-    Extracts and converts GPS coordinates from metadata to decimal degrees.
+    Extracts and converts GPS coordinates from metadata to 
+    decimal degrees.
     Parameters:
         gps_data (dict): GPS-related EXIF metadata.
     Returns:
-        tuple: Latitude and longitude in decimal degrees, or (None, None) if unavailable.
+        tuple: Latitude and longitude in decimal 
+        degrees, or (None, None) if unavailable.
     """
+
     if not gps_data:
         return None, None
 
     try:
+
         # Convert latitude and longitude to decimal degrees
-        lat = convert_to_decimal_degrees(gps_data["GPSLatitude"], gps_data["GPSLatitudeRef"])
-        lon = convert_to_decimal_degrees(gps_data["GPSLongitude"], gps_data["GPSLongitudeRef"])
+        lat = convert_to_decimal_degrees(
+            gps_data["GPSLatitude"], 
+            gps_data["GPSLatitudeRef"])
+        lon = convert_to_decimal_degrees(
+            gps_data["GPSLongitude"], 
+            gps_data["GPSLongitudeRef"])
+        
         return lat, lon
+    
     except KeyError:
+
         return None, None
 
 def parse_gps_datetime(date_stamp, time_stamp):
@@ -90,6 +114,7 @@ def parse_gps_datetime(date_stamp, time_stamp):
     Returns:
         datetime: A datetime object representing the combined GPS date and time.
     """
+
     # Replace colons in the date with hyphens to match the datetime format
     date_str = date_stamp.replace(':', '-')
     hours, minutes, seconds = time_stamp
@@ -106,11 +131,14 @@ def format_location(address):
     Returns:
         str: A formatted location string (e.g., "Suburb, City, State").
     """
+
     city = address.get("city", "Unknown City")
     suburb = address.get("suburb", "")
     state = address.get("state", "")
+
     if suburb:
         return f"{suburb}, {city}, {state}"
+    
     return f"{city}, {state}"
 
 def get_location_name(lat, lon):
@@ -122,36 +150,50 @@ def get_location_name(lat, lon):
     Returns:
         str: A formatted location name or 'Unknown Location' if the API call fails.
     """
+
     print(f"Requesting location for Coordinates: Latitude = {lat}, Longitude = {lon}")
+
     url = "https://nominatim.openstreetmap.org/reverse"
+    
     params = {
         "lat": lat,
         "lon": lon,
         "format": "json"
     }
+    
     headers = {
         "User-Agent": "PhotoOrganizer/1.0 (santunesribeiro@outlook.com)"
     }
 
     try:
+
         # Make an HTTP GET request to the Nominatim API
         response = requests.get(url, params=params, headers=headers)
+
         print(f"API Response Status: {response.status_code}")
+
         if response.status_code == 200:
             # Parse the JSON response to extract address information
             data = response.json()
             address = data.get("address", {})
             location = format_location(address)
+
             print(f"Location Found: {location}")
+
             return location
+        
         elif response.status_code == 429:
             # Handle rate-limiting with a retry
             print("Rate limit exceeded. Retrying after a delay...")
             time.sleep(1)
+
             return get_location_name(lat, lon)
+        
         else:
             print(f"Unexpected API Error: {response.status_code} - {response.text}")
+
     except requests.exceptions.RequestException as e:
+
         # Handle network or connection errors
         print(f"Error while connecting to the API: {e}")
     
@@ -165,12 +207,13 @@ def organize_photo(file_path, location, date):
         location (str): The location name derived from metadata or "Unknown Location".
         date (datetime): The date the photo was taken.
     """
+
     base_dir = "C:/Users/santu/Pictures/Photos"
     
     # Create directories based on location and year
     location_dir = os.path.join(base_dir, location)
     year_dir = os.path.join(location_dir, str(date.year))
-    
+
     # Ensure directories exist
     os.makedirs(year_dir, exist_ok=True)  
 
@@ -183,13 +226,16 @@ def organize_photos_by_location_and_date(directory):
     Parameters:
         directory (str): The directory containing the photos to organize.
     """
+
     for filename in os.listdir(directory):
         file_path = os.path.join(directory, filename)
+
         if not os.path.isfile(file_path):  # Skip non-file entries
             continue
 
         # Extract EXIF metadata from the photo
         exif_data = get_exif_data(file_path)
+        
         if not exif_data:
             # Handle photos without metadata
             unknown_dir = os.path.join(directory, "Unknown Location")

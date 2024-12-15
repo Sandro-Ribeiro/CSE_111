@@ -2,7 +2,7 @@ import os
 import shutil
 import pytest
 from unittest.mock import patch
-from file_organizer import get_location_name, format_location, organize_photos_by_location_and_date
+from week06.prove_milestone.photo_organizer import get_location_name, format_location, organize_photos_by_location_and_date
 
 
 # Funções do seu código principal importadas aqui (exemplo abaixo)

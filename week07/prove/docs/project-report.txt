@@ -1,0 +1,14 @@
+*****************Second Report for a Student Chosen Project********************
+
+In the table below are the list of the dates, amount of time spent, and
+description of the work done on project.
+
+===============================================================================            
+   Date       Time Spent                 Description of Work                 
+------------|------------|-----------------------------------------------------
+2021-12-03  |  2.5 hours |  Wrote two program functions and two test functions
+------------|------------|-----------------------------------------------------
+2021-12-03  |  0.5 hours |  Watched video on
+------------|------------|-----------------------------------------------------
+
+===============================================================================

@@ -32,23 +32,29 @@ def main(directory):
 
         if not exif_data:
             # Handle photos without metadata
-            unknown_dir = os.path.join(directory, "Unknown Location")
-
+            unknown_dir = os.path.join(directory, ["","","Unknown"])
             os.makedirs(unknown_dir, exist_ok=True)
             os.rename(file_path, os.path.join(unknown_dir, filename))
-
             continue
 
         # Parse GPS and date metadata
-        gps_data = exif_data["gps"]
-        date_taken = exif_data["date_taken"]
-        lat, lon = parse_gps_coordinates(gps_data)
+        gps_data = exif_data.get("gps", None)
+        date_taken = exif_data.get("date_taken", None)
+
+        if gps_data:
+            coordinates = parse_gps_coordinates(gps_data)
+            if coordinates:
+                lat, lon = coordinates
+            else:
+                lat, lon = None, None
+        else:
+            lat, lon = None, None
 
         # Determine location
         if lat and lon:
             location_name = get_location_name(lat, lon)
         else:
-            location_name = "Unknown Location"
+            location_name = ["","","Unknown"]
 
         # Determine date
         if date_taken:
@@ -64,5 +70,5 @@ def main(directory):
 
 
 if __name__ == "__main__":
-    directory = "C:/Users/santu/Pictures/Photos"
+    directory = "/home/sandro/Imagens/Photos"
     main(directory)

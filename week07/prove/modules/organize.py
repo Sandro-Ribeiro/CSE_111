@@ -8,11 +8,19 @@ def organize_photo(file_path, location, date):
     Organizes a photo into a folder structure by location and year.
     """
 
-    base_dir = "C:/Users/santu/Pictures/Photos"
-    location_dir = os.path.join(base_dir, location)
-    year_dir = os.path.join(location_dir, str(date.year))
+    base_dir = "/home/sandro/Imagens/Photos"
+    
+    path_dir = os.path.join(base_dir, location[2], location[1], location[0])
 
-    os.makedirs(year_dir, exist_ok=True)
-    os.rename(file_path, os.path.join(year_dir, os.path.basename(file_path)))
+    if location[1] == "Unknown":
+        path_dir = os.path.join(base_dir, location[2], location[1])
+
+    if location[2] == "Unknown":
+        path_dir = os.path.join(base_dir, location[2])
+
+    path_dir = os.path.join(path_dir, str(date.year))
+
+    os.makedirs(path_dir, exist_ok=True)
+    os.rename(file_path, os.path.join(path_dir, os.path.basename(file_path)))
 
 

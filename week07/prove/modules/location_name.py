@@ -8,11 +8,11 @@ def format_location(address):
     """
     Formats the location name based on the 
     address data.
-    """
-    unkonwn = "Unknown"
-    city = address.get("city", unkonwn)
-    suburb = address.get("suburb", unkonwn)
-    state = address.get("state", unkonwn)
+    """ 
+
+    suburb = address.get("suburb", "Unkonwn_suburb")
+    city = address.get("city", "Unkonwn_city")
+    state = address.get("state", "Unkonwn_state")
 
     return [suburb, city, state]
 

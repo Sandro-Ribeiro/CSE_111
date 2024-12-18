@@ -3,23 +3,22 @@
 from PIL import Image, UnidentifiedImageError
 from PIL.ExifTags import TAGS, GPSTAGS
 
-
-def get_exif_data(image_path):
+def get_exif_data(photo_path):
 
     """
-    Extracts the EXIF metadata from an image, 
-    including GPS and date information.
+    Extracts the EXIF metadata from an photo,
+    including GPS and date information. 
+    Prioritizes GPS metadata.
     """
     try:
-        # Opens the image file
-        image = Image.open(image_path)
+        # Opens the photo file
+        photo = Image.open(photo_path)
     
-
         # Retrieves EXIF metadata
-        exif_data = image._getexif()
+        exif_data = photo._getexif()
 
         if not exif_data:
-            print(f"No EXIF metadata found for {image_path}")
+            print(f"No EXIF metadata found for {photo_path}")
             return {"error": "No EXIF metadata"}
 
         # Map EXIF tags to their names
@@ -37,7 +36,7 @@ def get_exif_data(image_path):
         }
     
     except UnidentifiedImageError:
-        print(f"Skipping non-image file: {image_path}")
+        print(f"Skipping non-photo file: {photo_path}")
         return None
     
 def main():

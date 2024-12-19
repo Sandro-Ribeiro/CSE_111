@@ -1,0 +1,44 @@
+*****************Second Report for a Student Chosen Project********************
+
+CSE 111 - Programming with Functions
+
+W07 Prove: Student Choice Program
+
+Student: Sandro Henrique Antunes Ribeiro
+
+In the table below are the list of the dates, amount of time spent, and
+description of the work done on project.
+
+===============================================================================          
+   Date     | Time Spent |               Description of Work                 
+=============================================================================== 
+2021-12-17  |  1.0 hour  |  Writing the exit_data module
+------------|------------|-----------------------------------------------------
+2021-12-17  |  1.5 hour  |  Writing the parse_gps module
+------------|------------|-----------------------------------------------------
+2021-12-17  |  3.0 hours |  Writing the location_name module
+------------|------------|-----------------------------------------------------
+2021-12-17  |  1.0 hour  |  Writing the organize module
+------------|------------|-----------------------------------------------------
+2021-12-18  |  1.5 hours |  Writing the photo_organizer module
+------------|------------|-----------------------------------------------------
+2021-12-18  |  2.0 hours |  Writing the helpers module
+------------|------------|-----------------------------------------------------
+2021-12-18  |  0.5 hour  |  Writing the test_exif_data module
+------------|------------|-----------------------------------------------------
+2021-12-18  |  1.5 hour  |  Writing the test_parse_gps module
+------------|------------|-----------------------------------------------------
+2021-12-18  |  2.5 hours |  Writing the test_location_name module
+------------|------------|-----------------------------------------------------
+2021-12-18  |  1.0 hour  |  Writing the test_organize module
+------------|------------|-----------------------------------------------------
+2021-12-18  |  1.0 hour |  Writing the test_integration module
+------------|------------|-----------------------------------------------------
+2021-12-19  |  1.0 hour  |  Re-evaluating and changing codes
+------------|------------|-----------------------------------------------------
+2021-12-19  |  0.5 hour  |  Performing the final tests
+------------|------------|-----------------------------------------------------
+2021-12-19  |  0.5 hour  |  Writing report for student chosen project
+==============================================================================
+Total       |  18 hours  |  For finished all project
+===============================================================================

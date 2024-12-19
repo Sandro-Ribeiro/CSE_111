@@ -1,10 +1,10 @@
 # Copyright 2024, Sandro Ribeiro. All rights reserved.
 
 """
-The program reorganizes and renames photos in a specified folder 
-based on user-defined criteria. The application is useful for 
-organizing large volumes of photos, using metadata and other 
-information to categorize photos efficiently.
+The program reorganizes and renames photos in a specified 
+folder based on user-defined criteria. The application is 
+useful for organizing large volumes of photos, using metadata 
+to categorize photos.
 """
 
 import os
@@ -74,5 +74,5 @@ def main(photos_dir):
 
 
 if __name__ == "__main__":
-    photos_dir = "/home/sandro/Imagens/Photos"
+    photos_dir = "./photos"
     main(photos_dir)

@@ -7,7 +7,7 @@ def organize_photo(file_path, location, date):
     """
     Organizes a photo into a folder structure by location and year.
     """
-    base_dir = "/home/sandro/Imagens/Photos"
+    base_dir = "./photos"
 
     # Determine the folder path based on location
     path_dir = os.path.join(base_dir, location[2], location[1], location[0])

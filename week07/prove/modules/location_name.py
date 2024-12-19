@@ -10,9 +10,9 @@ def format_location(address):
     address data.
     """ 
 
-    suburb = address.get("suburb", "Unkonwn_suburb")
-    city = address.get("city", "Unkonwn_city")
-    state = address.get("state", "Unkonwn_state")
+    suburb = address.get("suburb", "Unknown_suburb")
+    city = address.get("city", "Unknown_city")
+    state = address.get("state", "Unknown_state")
 
     return [suburb, city, state]
 

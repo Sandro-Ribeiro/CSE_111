@@ -12,16 +12,16 @@ def organize_photo(file_path, location, date):
     
     path_dir = os.path.join(base_dir, location[2], location[1], location[0])
 
-    if location[1] == "Unknown_city":
+    if location[1] == "Unkonwn_city":
         path_dir = os.path.join(base_dir, location[2], location[1])
 
-    if location[2] == "Unknown_state":
+    if location[2] == "Unkonwn_state":
         path_dir = os.path.join(base_dir, location[2])
 
-    if date:
+    if date != "Unknown":
         path_dir = os.path.join(path_dir, str(date.year))
     else:
-        path_dir = os.path.join(path_dir, str("Unknown_year"))
+        path_dir = os.path.join(path_dir,"Unknown_date")
 
     os.makedirs(path_dir, exist_ok=True)
     os.rename(file_path, os.path.join(path_dir, os.path.basename(file_path)))

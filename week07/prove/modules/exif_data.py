@@ -40,8 +40,9 @@ def get_exif_data(photo_path):
         return None
     
 def main():
-    dict_data = get_exif_data("/home/sandro/Imagens/Photos/IMG_20191209_115228337.jpg")
-    print(dict_data.items())
+    dict_data = get_exif_data("/home/sandro/Imagens/IMG_20191209_115228337.jpg")
+    for i, j in dict_data.items():
+        print(f"{i}: {j}")
 
 if __name__=="__main__":
     main()

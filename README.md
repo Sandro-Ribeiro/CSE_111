@@ -28,42 +28,42 @@ This course is organized into a series of lessons. In the semester version of th
 Each lesson is organized as follows:
 
 <ul>
-    <li>Prepare: Preparation Material—Links will be provided to videos and reading material 
+    <li>Prepare: Preparation Material - Links will be provided to videos and reading material 
     that should be completed individually prior to moving on to the rest of the lesson.</li>
-    <li>Prepare: Checkpoint—A small individual programming assignment designed to help you 
+    <li>Prepare: Checkpoint - A small individual programming assignment designed to help you 
     practice the mechanics of the reading.</li>
-    <li>Teach: Team Activity—A 1-hour programming activity to be completed with 3–5 other 
+    <li>Teach: Team Activity - A 1-hour programming activity to be completed with 3–5 other 
     students. Face-to-face students will complete this activity during class. Online students will 
     arrange a synchronous video conference.</li>
-    <li>Teach: Team Activity—A 1-hour programming activity to be completed with 3–5 other 
+    <li>Teach: Team Activity - A 1-hour programming activity to be completed with 3–5 other 
     students.Face-to-face students will complete this activity during class. Online students will 
     arrange a synchronous video conference.</li>
-    <li>Prove: Programming Assignment—A large individual programming project. Many of these 
+    <li>Prove: Programming Assignment - A large individual programming project. Many of these 
     span two lessons, with a milestone deliverable coming due at the end of the first lesson.</li>
-    <li>Ponder: Check your understanding—Every other lesson will have a multiple-choice 
+    <li>Ponder: Check your understanding - Every other lesson will have a multiple-choice 
     quiz to help you check your understanding of the topic.</li>
-    <li>Ponder: Reflection—Every other week will contain 2–3 short response questions to allow you to reflect on the things you are learning.</li>
+    <li>Ponder: Reflection - Every other week will contain 2–3 short response questions to allow you to reflect on the things you are learning.</li>
 </ul>
 
 ## Grading
 The grading breakdown for the course is the following:
 <ul>
-    <li>15%—Checkpoints</li>
-    <li>15%—Team Activities</li>
-    <li>55%—Assignments</li>
-    <li>10%—Check Your Understanding</li>
-    <li>5%—Reflections</li>
+    <li>15% - Checkpoints</li>
+    <li>15% - Team Activities</li>
+    <li>55% - Assignments</li>
+    <li>10% - Check Your Understanding</li>
+    <li>5% - Reflections</li>
 </ul>
 
 Assignments will be generally graded in broad categories according to the following:
 
 <ul>
-    <li>0%—Nothing submitted.</li>
-    <li>50%—Some attempt made.</li>
-    <li>75%—Developing (but significantly deficient).</li>
-    <li>85%—Slightly deficient.</li>
-    <li>93%—Meets requirements.</li>
-    <li>100%—Shows creativity and exceeds requirements. This will be explained in the 
+    <li>0% - Nothing submitted.</li>
+    <li>50% - Some attempt made.</li>
+    <li>75% - Developing (but significantly deficient).</li>
+    <li>85% - Slightly deficient.</li>
+    <li>93% - Meets requirements.</li>
+    <li>100% - Shows creativity and exceeds requirements. This will be explained in the 
     individual assignments, but there is an expectation to show creativity and extend your 
     assignments beyond the minimum standard that is specifically required.</li>
 </ul>

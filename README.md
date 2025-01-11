@@ -28,42 +28,42 @@ This course is organized into a series of lessons. In the semester version of th
 Each lesson is organized as follows:
 
 <ul>
-    <li>&#187;Prepare: Preparation Material—Links will be provided to videos and reading material 
+    <li>Prepare: Preparation Material—Links will be provided to videos and reading material 
     that should be completed individually prior to moving on to the rest of the lesson.</li>
-    <li>&#187;Prepare: Checkpoint—A small individual programming assignment designed to help you 
+    <li>Prepare: Checkpoint—A small individual programming assignment designed to help you 
     practice the mechanics of the reading.</li>
-    <li>&#187;Teach: Team Activity—A 1-hour programming activity to be completed with 3–5 other 
+    <li>Teach: Team Activity—A 1-hour programming activity to be completed with 3–5 other 
     students. Face-to-face students will complete this activity during class. Online students will 
     arrange a synchronous video conference.</li>
-    <li>&#187;Teach: Team Activity—A 1-hour programming activity to be completed with 3–5 other 
+    <li>Teach: Team Activity—A 1-hour programming activity to be completed with 3–5 other 
     students.Face-to-face students will complete this activity during class. Online students will 
     arrange a synchronous video conference.</li>
-    <li>&#187;Prove: Programming Assignment—A large individual programming project. Many of these 
+    <li>Prove: Programming Assignment—A large individual programming project. Many of these 
     span two lessons, with a milestone deliverable coming due at the end of the first lesson.</li>
-    <li>&#187;Ponder: Check your understanding—Every other lesson will have a multiple-choice 
+    <li>Ponder: Check your understanding—Every other lesson will have a multiple-choice 
     quiz to help you check your understanding of the topic.</li>
-    <li>&#187;Ponder: Reflection—Every other week will contain 2–3 short response questions to allow you to reflect on the things you are learning.</li>
+    <li>Ponder: Reflection—Every other week will contain 2–3 short response questions to allow you to reflect on the things you are learning.</li>
 </ul>
 
 ## Grading
 The grading breakdown for the course is the following:
 <ul>
-    <li>&#187;15%—Checkpoints</li>
-    <li>&#187;15%—Team Activities</li>
-    <li>&#187;55%—Assignments</li>
-    <li>&#187;10%—Check Your Understanding</li>
-    <li>&#187;5%—Reflections</li>
+    <li>15%—Checkpoints</li>
+    <li>15%—Team Activities</li>
+    <li>55%—Assignments</li>
+    <li>10%—Check Your Understanding</li>
+    <li>5%—Reflections</li>
 </ul>
 
 Assignments will be generally graded in broad categories according to the following:
 
 <ul>
-    <li>&#187;0%—Nothing submitted.</li>
-    <li>&#187;50%—Some attempt made.</li>
-    <li>&#187;75%—Developing (but significantly deficient).</li>
-    <li>&#187;85%—Slightly deficient.</li>
-    <li>&#187;93%—Meets requirements.</li>
-    <li>&#187;100%—Shows creativity and exceeds requirements. This will be explained in the 
+    <li>0%—Nothing submitted.</li>
+    <li>50%—Some attempt made.</li>
+    <li>75%—Developing (but significantly deficient).</li>
+    <li>85%—Slightly deficient.</li>
+    <li>93%—Meets requirements.</li>
+    <li>100%—Shows creativity and exceeds requirements. This will be explained in the 
     individual assignments, but there is an expectation to show creativity and extend your 
     assignments beyond the minimum standard that is specifically required.</li>
 </ul>
@@ -71,18 +71,18 @@ Assignments will be generally graded in broad categories according to the follow
 Letter grades will be awarded as follows:
 
 <ul>
-    <li>&#187;93–100% = A</li>
-    <li>&#187;90–92.9% = A-</li>
-    <li>&#187;87–89.9% = B+</li>
-    <li>&#187;83–86.9% = B</li>
-    <li>&#187;80–82.9% = B-</li>
-    <li>&#187;77–79.9% = C+</li>
-    <li>&#187;73–76.9% = C</li>
-    <li>&#187;70–72.9% = C-</li>
-    <li>&#187;67–69.9% = D+</li>
-    <li>&#187;63–66.9% = D</li>
-    <li>&#187;60–62.9% = D-</li>
-    <li>&#187;0–59.9% = F</li>
+    <li>93–100% = A</li>
+    <li>90–92.9% = A-</li>
+    <li>87–89.9% = B+</li>
+    <li>83–86.9% = B</li>
+    <li>80–82.9% = B-</li>
+    <li>77–79.9% = C+</li>
+    <li>73–76.9% = C</li>
+    <li>70–72.9% = C-</li>
+    <li>67–69.9% = D+</li>
+    <li>63–66.9% = D</li>
+    <li>60–62.9% = D-</li>
+    <li>0–59.9% = F</li>
 </ul>
 
 All grades are reported in I-Learn.
